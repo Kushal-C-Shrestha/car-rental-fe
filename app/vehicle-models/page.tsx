@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Button } from "../_components/Button";
 import { PageHero } from "../_components/PageHero";
 import { cars } from "../_data/cars";
 
@@ -34,12 +34,12 @@ export default function VehicleModelsPage() {
               <p className="text-xl font-black text-zinc-950">
                 {car.price}/day
               </p>
-              <Link
+              <Button
                 href={`/vehicle-models/${car.slug}`}
-                className="rounded bg-[#ff4d30] px-4 py-3 text-sm font-black text-white"
+                size="sm"
               >
                 View Details
-              </Link>
+              </Button>
             </div>
           </article>
         ))}

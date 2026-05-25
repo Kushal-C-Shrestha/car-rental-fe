@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Button } from "../../_components/Button";
 import { cars, fleetDetailIcons } from "../../_data/cars";
 
 type VehiclePageProps = {
@@ -66,12 +67,13 @@ export default async function VehicleModelPage({ params }: VehiclePageProps) {
               {detail}
             </p>
           ))}
-          <Link
+          <Button
             href="/home#booking"
-            className="block bg-zinc-950 px-5 py-4 text-center font-black uppercase text-white"
+            className="block w-full rounded-none uppercase"
+            variant="dark"
           >
             Book Ride
-          </Link>
+          </Button>
         </aside>
       </div>
     </section>

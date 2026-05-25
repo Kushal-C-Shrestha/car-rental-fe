@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "./Button";
 
 const navLinks = [
   { href: "/home", label: "Home" },
@@ -39,12 +40,9 @@ export function Navbar() {
           >
             Sign in
           </Link>
-          <Link
-            href="/register"
-            className="rounded bg-[#ff4d30] px-5 py-3 text-white shadow-[0_10px_18px_rgba(255,77,48,0.28)] transition hover:bg-[#e33f25]"
-          >
+          <Button href="/register">
             Register
-          </Link>
+          </Button>
         </div>
       </nav>
     </header>

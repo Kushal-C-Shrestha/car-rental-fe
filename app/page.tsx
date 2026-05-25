@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { cars, fleetDetailIcons } from "./_data/cars";
+import { Button } from "./_components/Button";
 import { SectionTitle } from "./_components/SectionTitle";
 
 const times = [
@@ -53,18 +54,12 @@ export default function Home() {
               flexible pick-up options and much more.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <a
-                href="#booking"
-                className="rounded bg-[#ff4d30] px-8 py-4 text-center font-bold text-white shadow-[0_10px_18px_rgba(255,77,48,0.35)] transition hover:bg-[#e33f25]"
-              >
+              <Button href="#booking" size="lg">
                 Book Ride
-              </a>
-              <a
-                href="#about"
-                className="rounded bg-zinc-950 px-8 py-4 text-center font-bold text-white transition hover:bg-zinc-800"
-              >
+              </Button>
+              <Button href="#about" size="lg" variant="dark">
                 Learn More
-              </a>
+              </Button>
             </div>
           </div>
           <div className="relative min-h-72 lg:min-h-[460px]">
@@ -129,9 +124,9 @@ export default function Home() {
                 ))}
               </select>
             </Field>
-            <button className="mt-8 h-12 rounded bg-[#ff4d30] font-bold text-white transition hover:bg-[#e33f25]">
+            <Button type="submit" className="mt-8 h-12">
               Search
-            </button>
+            </Button>
           </div>
         </form>
       </section>
@@ -219,12 +214,13 @@ export default function Home() {
                   {item}
                 </p>
               ))}
-              <a
+              <Button
                 href="#booking"
-                className="block bg-zinc-950 px-5 py-4 text-center font-black uppercase text-white"
+                className="block w-full rounded-none uppercase"
+                variant="dark"
               >
                 Book Ride
-              </a>
+              </Button>
             </div>
           </div>
         </div>
@@ -295,12 +291,9 @@ export default function Home() {
             Find the best deals for cross country drives, all inclusive pricing,
             and no hidden charges.
           </p>
-          <a
-            href="#booking"
-            className="mt-7 inline-block rounded bg-[#ff4d30] px-8 py-4 font-bold text-white"
-          >
+          <Button href="#booking" className="mt-7" size="lg">
             Find Deals
-          </a>
+          </Button>
           <div className="mt-8 grid gap-5">
             {[
               [
