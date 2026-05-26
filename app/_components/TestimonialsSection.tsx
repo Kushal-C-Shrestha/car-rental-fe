@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { PageHero } from "../_components/PageHero";
-import { Skeleton } from "../_components/Skeleton";
 import { getPublicReviews } from "@/lib/api";
+import { HomeSection } from "./HomeSection";
+import { SectionTitle } from "./SectionTitle";
+import { Skeleton } from "./Skeleton";
 
 type PublicReview = {
   id: string;
@@ -18,27 +19,23 @@ type PublicReview = {
   };
 };
 
-export default function TestimonialsPage() {
+export function TestimonialsSection() {
   const [reviews, setReviews] = useState<PublicReview[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
 
     async function loadReviews() {
-      setIsLoading(true);
-      setHasError(false);
-
       try {
         const response = await getPublicReviews();
 
         if (isMounted) {
-          setReviews(response.data || []);
+          setReviews((response.data || []).slice(0, 3));
         }
       } catch {
         if (isMounted) {
-          setHasError(true);
+          setReviews([]);
         }
       } finally {
         if (isMounted) {
@@ -55,25 +52,19 @@ export default function TestimonialsPage() {
   }, []);
 
   return (
-    <div className="bg-[#f8f8f8]">
-      <PageHero
+    <HomeSection id="testimonials" tone="muted">
+      <SectionTitle
         eyebrow="Reviewed by People"
         title="Clients' Testimonials"
-        description="Certain but she but shyness why cottage. Guy the put instrument sir entreaties affronting."
+        text="Certain but she but shyness why cottage. Guy the put instrument sir entreaties affronting."
       />
-      <section className="mx-auto grid max-w-6xl gap-6 px-5 pb-16 md:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-3">
         {isLoading
           ? Array.from({ length: 3 }).map((_, index) => (
               <article key={index} className="rounded bg-white p-8 shadow-sm">
                 <Skeleton className="h-7 w-full" />
                 <Skeleton className="mt-3 h-7 w-4/5" />
-                <div className="mt-8 flex items-center gap-4">
-                  <Skeleton className="h-14 w-14 rounded-full" />
-                  <div className="flex-1">
-                    <Skeleton className="h-5 w-32" />
-                    <Skeleton className="mt-2 h-4 w-24" />
-                  </div>
-                </div>
+                <Skeleton className="mt-8 h-14 w-2/3" />
               </article>
             ))
           : reviews.map((review) => (
@@ -103,16 +94,15 @@ export default function TestimonialsPage() {
             ))}
         {!isLoading && reviews.length === 0 ? (
           <article className="rounded bg-white p-8 text-center shadow-sm md:col-span-3">
-            <p className="text-xl font-black text-zinc-950">
-              {hasError ? "Reviews could not load." : "No client reviews yet."}
+            <p className="text-lg font-black text-zinc-950">
+              No client reviews yet.
             </p>
             <p className="mt-2 text-zinc-600">
-              Reviews from real customers will appear here after vehicles are
-              reviewed.
+              Customer reviews will show here after vehicles are reviewed.
             </p>
           </article>
         ) : null}
-      </section>
-    </div>
+      </div>
+    </HomeSection>
   );
 }
