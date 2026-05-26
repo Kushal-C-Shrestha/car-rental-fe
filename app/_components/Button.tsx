@@ -59,7 +59,7 @@ export function Button(props: ButtonProps) {
 
   if (isLinkButtonProps(props)) {
     return (
-      <Link href={props.href} className={classes}>
+      <Link href={props.href} onClick={props.onClick} className={classes}>
         {children}
       </Link>
     );
